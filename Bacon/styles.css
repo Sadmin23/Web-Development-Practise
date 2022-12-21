@@ -2,6 +2,15 @@ h1 {
     color: red;
     font-size: 100px;
 }
+/* 
 img{
+    background-color: red;
+} 
+*/
+.bacon{
+    background-color: green;
+}
+
+.brocoli{
     background-color: red;
 }

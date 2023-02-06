@@ -1,0 +1,23 @@
+{
+  "name": "intro-node",
+  "version": "1.0.0",
+  "description": "Intro to node  project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sadmin23/Intro-Node.git"
+  },
+  "author": "Sadmin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sadmin23/Intro-Node/issues"
+  },
+  "homepage": "https://github.com/Sadmin23/Intro-Node#readme",
+  "dependencies": {
+    "superheroes": "^3.0.0",
+    "supervillains": "^3.1.0"
+  }
+}

@@ -11,14 +11,19 @@ const dbName = "fruitsDB";
 
 async function run() {
   try {
-    // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
-
-    // Establish and verify connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Connected successfully to server");
+    const database = client.db(dbName);
+    const foods = database.collection("fruits");
+    // create an array of documents to insert
+    const docs = [
+      { name: "Apple", score: 8, review: "Great fruit" },
+      { name: "Orange", score: 6, review: "Kinda Sour" },
+      { name: "Banana", score: 9, review: "Great stuff!" }
+    ];
+    // this option prevents additional documents from being inserted if one fails
+    const options = { ordered: true };
+    const result = await foods.insertMany(docs, options);
+    console.log(`${result.insertedCount} documents were inserted`);
   } finally {
-    // Ensures that the client will close when you finish/error
     await client.close();
   }
 }

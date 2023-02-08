@@ -1,23 +1,19 @@
-const { MongoClient } = require("mongodb");
+//jshint esversion:6
 
-const url =
-  "mongodb://0.0.0.0:27017";
+const mongoose = require("mongoose");
 
-const dbName = "fruitsDB";
+mongoose.connect("mongodb://127.0.0.1:27017/fruitsDB", {useNewUrlParser: true});
 
-MongoClient.connect(url).then((client) => {
-  
-  const connect = client.db(dbName);
+const fruitSchema = new mongoose.Schema ({
+  name: String,
+  rating: Number,
+  review: String
+});
 
-  // Connect to collection
-  const collection = connect
-      .collection("fruits");
+const Fruit = mongoose.model("Fruit", fruitSchema);
 
-  collection.find({}).toArray().then((ans) => {
-      console.log(ans);
-  });
-}).catch((err) => {
-
-  // Printing the error message
-  console.log(err.Message);
-})
+const fruit = new Fruit ({
+  name: "Apple",
+  rating: 7,
+  review: "Pretty solid as a fruit." 
+});

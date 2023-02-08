@@ -7,11 +7,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/fruitsDB", {useNewUrlParser: true});
 
 const fruitSchema = new mongoose.Schema ({
   name: String,
-  rating: {
-    type: Number,
-    min: 1,
-    max: 10
-  },
+  rating: Number,
   review: String
 });
 
@@ -24,15 +20,27 @@ const fruit = new Fruit ({
 
 const personSchema = new mongoose.Schema ({
   name: String,
-  age: Number
+  age: Number,
+  favouriteFruit: fruitSchema
 });
 
-const Person = mongoose.model("Person", fruitSchema);
+const Person = mongoose.model("Person", personSchema);
+
+const pineapple = new Fruit({
+  name: "Pineapple",
+  rating: 9,
+  review: "Great fruit."
+})
+
+// pineapple.save();
 
 const person = new Person ({
-  name: "John",
-  rating: 37 
+  name: "Amy",
+  age: 12,
+  favouriteFruit: pineapple
 });
+
+person.save();
 
 //fruit.save();
 
@@ -98,10 +106,10 @@ Fruit.find(function(err, fruits){
 //   }
 // });
 
-Person.deleteMany({name: "John"}, function(err){
-  if (err){
-    console.log(err);
-  } else {
-    console.log("Successfully deleted from database!");
-  }
-});
+// Person.deleteMany({name: "John"}, function(err){
+//   if (err){
+//     console.log(err);
+//   } else {
+//     console.log("Successfully deleted from database!");
+//   }
+// });

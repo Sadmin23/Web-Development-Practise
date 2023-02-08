@@ -49,10 +49,23 @@ const banana = new Fruit ({
   review: "Weird texture" 
 });
 
-Fruit.insertMany([fruit, kiwi, orange, banana], function(err){
+// Fruit.insertMany([fruit, kiwi, orange, banana], function(err){
+//   if (err){
+//     console.log(err);
+//   } else {
+//     console.log("Successfully added data");
+//   }
+// });
+
+Fruit.find(function(err, fruits){
   if (err){
     console.log(err);
   } else {
-    console.log("Successfully added data");
+
+    fruits.forEach(fruit=>{
+      console.log(fruit.name);
+    });
+
+    mongoose.connection.close();
   }
-})
+});
